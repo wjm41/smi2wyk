@@ -1,0 +1,19 @@
+#!/bin/bash
+#SBATCH -J subm_train_smi2protopear
+#SBATCH -A LEE-WJM41-SL2-GPU
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --gres=gpu:1
+#SBATCH --time=3:00:00
+#SBATCH --mail-user=wjm41@cam.ac.uk
+#SBATCH --output=/home/wjm41/ml_physics/smi2wyk/notebooks/subm_train_smi2protopear.out
+#SBATCH -p ampere
+#SBATCH --mail-type=ALL
+. /etc/profile.d/modules.sh
+module purge
+module load rhel8/default-amp
+module load miniconda/3
+source activate DebiasedMT
+
+onmt_build_vocab -config /home/wjm41/ml_physics/smi2wyk/data/smi2protopear/preprocess.yaml
+onmt_train -config /home/wjm41/ml_physics/smi2wyk/data/smi2protopear/train_single.yaml -tensorboard True -tensorboard_log_dir $/home/wjm41/ml_physics/smi2wyk/runs/smi2protopear

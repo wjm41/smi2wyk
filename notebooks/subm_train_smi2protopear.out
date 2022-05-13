@@ -1,0 +1,57 @@
+Loading rhel8/default-amp
+  Loading requirement: dot rhel8/slurm singularity/current rhel8/global
+    cuda/11.4 openmpi/4.1.1/gcc-9.4.0-epagguv
+Corpus train's weight should be given. We default it to 1 for you.
+[2022-05-13 14:14:04,195 INFO] Counter vocab from -1 samples.
+[2022-05-13 14:14:04,196 INFO] n_sample=-1: Build vocab on full datasets.
+[2022-05-13 14:14:04,206 INFO] train's transforms: TransformPipe()
+[2022-05-13 14:14:07,112 INFO] Counters src:302
+[2022-05-13 14:14:07,112 INFO] Counters tgt:980
+[2022-05-13 14:14:07,112 WARNING] path /home/wjm41/ml_physics/smi2wyk/data/smi2protopear/vocab.src exists, may overwrite...
+[2022-05-13 14:14:07,117 WARNING] path /home/wjm41/ml_physics/smi2wyk/data/smi2protopear/vocab.tgt exists, may overwrite...
+[2022-05-13 14:14:08,751 INFO] Missing transforms field for train data, set to default: [].
+[2022-05-13 14:14:08,752 WARNING] Corpus train's weight should be given. We default it to 1 for you.
+[2022-05-13 14:14:08,752 INFO] Missing transforms field for valid data, set to default: [].
+[2022-05-13 14:14:08,752 INFO] Parsed 2 corpora from -data.
+[2022-05-13 14:14:08,752 INFO] Get special vocabs from Transforms: {'src': set(), 'tgt': set()}.
+[2022-05-13 14:14:08,752 INFO] Loading vocab from text file...
+[2022-05-13 14:14:08,752 INFO] Loading src vocabulary from /home/wjm41/ml_physics/smi2wyk/data/smi2protopear/vocab.src
+[2022-05-13 14:14:08,753 INFO] Loaded src vocab has 302 tokens.
+[2022-05-13 14:14:08,753 INFO] Loading tgt vocabulary from /home/wjm41/ml_physics/smi2wyk/data/smi2protopear/vocab.tgt
+[2022-05-13 14:14:08,754 INFO] Loaded tgt vocab has 980 tokens.
+[2022-05-13 14:14:08,754 INFO] Building fields with vocab in counters...
+[2022-05-13 14:14:08,755 INFO]  * tgt vocab size: 281.
+[2022-05-13 14:14:08,755 INFO]  * src vocab size: 125.
+[2022-05-13 14:14:08,755 INFO]  * src vocab size = 125
+[2022-05-13 14:14:08,755 INFO]  * tgt vocab size = 281
+[2022-05-13 14:14:08,759 INFO] Building model...
+[2022-05-13 14:14:21,621 INFO] NMTModel(
+  (encoder): TransformerEncoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(125, 256, padding_idx=1)
+        )
+        (pe): PositionalEncoding(
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+      )
+    )
+    (transformer): ModuleList(
+      (0): TransformerEncoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linear_keys): Linear(in_features=256, out_features=256, bias=True)
+          (linear_values): Linear(in_features=256, out_features=256, bias=True)
+          (linear_query): Linear(in_features=256, out_features=256, bias=True)
+          (softmax): Softmax(dim=-1)
+          (dropout): Dropout(p=0.1, inplace=False)
+          (final_linear): Linear(in_features=256, out_features=256, bias=True)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (layer_norm): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+          (dropout_1): Dropout(p=0.1, inplace=False)
+          (dropout_2): Dropout(p=0.1, inplace=False)
+        )
+        (layer_norm): Layer

@@ -1,0 +1,61 @@
+save_model: /rds-d2/user/wjm41/hpc-work/models/smi2wyk/smi2protopear
+
+# Vocabulary files that were just created
+src_vocab: /home/wjm41/ml_physics/smi2wyk/data/smi2protopear/vocab.src
+tgt_vocab: /home/wjm41/ml_physics/smi2wyk/data/smi2protopear/vocab.tgt
+share_vocab: False
+
+data:
+    train:
+        path_src: /home/wjm41/ml_physics/smi2wyk/data/smi2protopear/src-train.csv
+        path_tgt: /home/wjm41/ml_physics/smi2wyk/data/smi2protopear/tgt-train.csv
+    valid:
+        path_src: /home/wjm41/ml_physics/smi2wyk/data/smi2protopear/src-valid.csv
+        path_tgt: /home/wjm41/ml_physics/smi2wyk/data/smi2protopear/tgt-valid.csv
+
+# skip silly tokens
+src_words_min_frequency: 100
+tgt_words_min_frequency: 100
+
+save_checkpoint_steps: 5000
+keep_checkpoint: -1
+seed: 42
+train_steps: 500000
+valid_steps: 5000
+warmup_steps: 8000
+report_every: 1000
+
+decoder_type: transformer
+encoder_type: transformer
+word_vec_size: 256
+rnn_size: 256
+layers: 4
+transformer_ff: 2048
+heads: 8
+global_attention: general
+global_attention_function: softmax
+self_attn_type: scaled-dot
+
+accum_count: 4
+optim: adam
+adam_beta1: 0.9
+adam_beta2: 0.998
+decay_method: noam
+learning_rate: 2.0
+max_grad_norm: 0.0
+
+batch_size: 1024
+batch_type: tokens
+normalization: tokens
+dropout: 0.1
+label_smoothing: 0.0
+
+max_generator_batches: 32
+
+param_init: 0.0
+param_init_glorot: 'true'
+position_encoding: 'true'
+
+world_size: 1
+gpu_ranks:
+- 0
