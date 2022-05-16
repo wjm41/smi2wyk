@@ -3,7 +3,7 @@ from tqdm import tqdm
 
 from ccdc.search import SMARTSSubstructure, SubstructureSearch
 
-from wren_code.utils import get_aflow_label_spglib, CifStringParser, count_wyks, count_params, count_distinct_wyckoff_letters, return_spacegroup_number
+from smi2wyk.wren_code.utils import get_aflow_label_spglib, CifStringParser, count_wyks, count_params, count_distinct_wyckoff_letters, return_spacegroup_number
 
 any_atom = SMARTSSubstructure("[X]")
 any_atom_search = SubstructureSearch()
