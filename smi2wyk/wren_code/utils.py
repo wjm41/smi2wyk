@@ -15,6 +15,8 @@ from pymatgen.io.vasp import Poscar
 from pymatgen.io.cif import CifParser, CifFile
 from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
 
+from ccdc.crystal import Crystal
+
 module_dir = dirname(abspath(__file__))
 
 mult_file = join(module_dir, "wp-mult.json")
@@ -22,7 +24,7 @@ param_file = join(module_dir, "wp-params.json")
 relab_file = join(module_dir, "wp-relab.json")
 
 with open(mult_file) as f:
-    mult_dict = json.load(f)
+    wyckoff_multiplicity_dict = json.load(f)
 
 with open(param_file) as f:
     param_dict = json.load(f)
@@ -124,11 +126,19 @@ class CifStringParser(CifParser):
             # pass individual CifBlocks to _sanitize_data
             self._cif.data[k] = self._sanitize_data(self._cif.data[k])
             
-def get_aflow_label_aflow(struct: Structure, aflow_executable: str = None) -> str:
-    """Get AFLOW prototype label for pymatgen Structure
-
+def get_aflow_label_with_aflow_from_ccdc_crystal(crystal: Crystal, aflow_executable: str = None) -> str:
+    """Get Aflow prototype label for a pymatgen Structure. Make sure you're running a recent
+    version of the aflow CLI as there's been several breaking changes. This code was tested
+    under v3.2.12.
+    Install guide: https://aflow.org/install-aflow/#install_aflow
+        http://aflow.org/install-aflow/install-aflow.sh -o install-aflow.sh
+        chmod 555 install-aflow.sh
+        ./install-aflow.sh
+    Args:
+        struct (Structure): pymatgen Structure
+        aflow_executable (str): path to aflow executable. Defaults to which("aflow").
     Returns:
-        str: AFLOW prototype label
+        str: Aflow prototype label
     """
     if aflow_executable is None:
         aflow_executable = which("aflow")
@@ -139,48 +149,42 @@ def get_aflow_label_aflow(struct: Structure, aflow_executable: str = None) -> st
             "aflow_executable='...'"
         )
 
-    poscar = Poscar(struct)
-
-    cmd = f"{aflow_executable} --prototype --print=json cat"
-
+    cmd = f"{aflow_executable} --prototype --print=json cat".split()
+    
+    cif_string = crystal.to_string(format='cif')
     output = subprocess.run(
         cmd,
-        input=poscar.get_string(),
+        input=cif_string,
         text=True,
         capture_output=True,
-        shell=True,
         check=True,
     )
 
     aflow_proto = json.loads(output.stdout)
 
-    aflow_label = aflow_proto["aflow_label"]
-
-    # to be consistent with spglib and wren embeddings
-    aflow_label = aflow_label.replace("alpha", "A")
+    aflow_label = aflow_proto["aflow_prototype_label"]
 
     # check that multiplicities satisfy original composition
-    symm = aflow_label.split("_")
-    spg_no = symm[2]
-    wyks = symm[3:]
-    elems = poscar.site_symbols
+    _, _, spg_no, *wyks = aflow_label.split("_")
+    elems = sorted([re.sub("([A-Z]).*", r"\1", elem) for elem in crystal.formula.split(" ")])
+
     elem_dict = {}
-    subst = r"1\g<1>"
+    subst = r"1\g<1>"  # normalize Wyckoff letters to start with 1 if missing digit
     for el, wyk in zip(elems, wyks):
         wyk = re.sub(r"((?<![0-9])[A-z])", subst, wyk)
         sep_el_wyks = ["".join(g) for _, g in groupby(wyk, str.isalpha)]
         elem_dict[el] = sum(
-            float(mult_dict[spg_no][w]) * float(n)
+            float(wyckoff_multiplicity_dict[spg_no][w]) * float(n)
             for n, w in zip(sep_el_wyks[0::2], sep_el_wyks[1::2])
         )
 
-    aflow_label += ":" + "-".join(elems)
+    # eqi_comp = Composition(elem_dict)
+    # if eqi_comp.reduced_formula != struct.composition.reduced_formula:
+    #     return f"Invalid WP Multiplicities: {aflow_label}"
 
-    eqi_comp = Composition(elem_dict)
-    if not eqi_comp.reduced_formula == struct.composition.reduced_formula:
-        return f"Invalid WP Multiplicities - {aflow_label}"
+    full_label = f"{aflow_label}:{'-'.join(elems)}"
 
-    return aflow_label
+    return full_label
 
 
 def get_aflow_label_spglib(struct: Structure) -> str:
@@ -229,7 +233,7 @@ def get_aflow_label_from_spga(spga: SpacegroupAnalyzer) -> str:
     elem_wyks = []
     for el, g in groupby(equivs, key=lambda x: x[1]):  # sort alphabetically by element
         lg = list(g)
-        elem_dict[el] = sum(float(mult_dict[str(spg_no)][e[2]]) for e in lg)
+        elem_dict[el] = sum(float(wyckoff_multiplicity_dict[str(spg_no)][e[2]]) for e in lg)
         wyks = ""
         for wyk, w in groupby(
             lg, key=lambda x: x[2]
