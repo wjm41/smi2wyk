@@ -1,7 +1,6 @@
 from __future__ import division, unicode_literals
 import argparse
 import pandas as pd
-import onmt.opts
 
 
 def get_rank(row, base, max_rank):
