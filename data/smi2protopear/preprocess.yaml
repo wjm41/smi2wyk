@@ -1,0 +1,20 @@
+# uspto_preprocess.yaml
+
+# Where the samples will be written
+save_data: /home/wjm41/ml_physics/smi2wyk/data/smi2protopear
+# Where the vocab(s) will be written
+src_vocab: /home/wjm41/ml_physics/smi2wyk/data/smi2protopear/vocab.src
+tgt_vocab: /home/wjm41/ml_physics/smi2wyk/data/smi2protopear/vocab.tgt
+# Overwrite existing files in the folder
+overwrite: True
+n_sample: -1
+share_vocab: False
+
+# Corpus opts:
+data:
+    train:
+        path_src: /home/wjm41/ml_physics/smi2wyk/data/smi2protopear/src-train.csv
+        path_tgt: /home/wjm41/ml_physics/smi2wyk/data/smi2protopear/tgt-train.csv
+    valid:
+        path_src: /home/wjm41/ml_physics/smi2wyk/data/smi2protopear/src-valid.csv
+        path_tgt: /home/wjm41/ml_physics/smi2wyk/data/smi2protopear/tgt-valid.csv
