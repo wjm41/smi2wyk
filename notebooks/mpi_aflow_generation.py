@@ -33,7 +33,7 @@ mpi_comm = MPI.COMM_WORLD
 mpi_rank = mpi_comm.Get_rank()
 mpi_size = mpi_comm.Get_size()
 
-my_start_index, my_end_index = slice_indices_according_to_rank_and_size(mpi_rank, mpi_size, search_results)
+my_start_index, my_end_index = slice_indices_according_to_rank_and_size(mpi_rank, mpi_size, len(search_results))
 
 my_results = search_results[my_start_index, my_end_index]
 
