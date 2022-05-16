@@ -23,8 +23,6 @@ setup(
     name="smi2wyk",
     version=get_version("smi2wyk/__init__.py"),
     description="Module for predicting wyckoff labels from molecular smiles.",
-    long_description=open("README.md").read(),
-    long_description_content_type="text/markdown",
     url="https://github.com/wjm41/smi2wyk",
     packages=find_packages(),
     author="W. McCorkindale",
