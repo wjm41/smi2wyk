@@ -1,3 +1,6 @@
+from typing import List
+from ccdc import io, utilities
+
 def write_slurm_script(job_name: str,
                        run_time: str,
                        output_name: str,
@@ -69,3 +72,31 @@ def write_slurm_script(job_name: str,
         f.write(string_to_write)
 
     return
+
+def insepct_entry(csd_entry: str):
+    csd_reader = io.EntryReader()
+
+    entry_name = 'ABIMUW'
+    entry = csd_reader.entry(entry_name)
+    crystal = entry.crystal
+
+    print(f'SMILES: {crystal.molecule.smiles}')
+    print(f'Crystal System: {crystal.crystal_system}')
+    print(f'Spacegroup Symbol: {crystal.spacegroup_symbol}')
+    print(f'Spacegroup Number: {crystal.spacegroup_number_and_setting}')
+    print(f'Has disorder: {crystal.has_disorder}')
+    print(f'Disorder details: {entry.disorder_details}')
+    
+    print('\n'.join('%-17s %s' % (op, utilities.print_set(crystal.atoms_on_special_positions(op))) for op in crystal.symmetry_operators))
+    return
+
+def spacegroup_from_crystal(csd_entry: str, reader: io.EntryReader = None):
+    
+    if reader is None:
+        reader = io.EntryReader()
+
+    entry = reader.entry(csd_entry)
+    crystal = entry.crystal
+    spg = crystal.spacegroup_number_and_setting[0]
+    return spg
+    

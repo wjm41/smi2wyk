@@ -29,8 +29,7 @@ def search_ccdc_for_organic_mols(n:int = 100):
     any_atom_search.settings.only_organic = True
     any_atom_search.settings.not_polymeric = True
 
-    if n != -1:
-        any_atom_search.settings.max_hit_structures = n
+    any_atom_search.settings.max_hit_structures = n
     any_atom_search.settings.max_hits_per_structure = 1
 
     search_results = any_atom_search.search()
@@ -72,22 +71,20 @@ def get_aflow_labels_for_search_results(search_results):
                             'wyckoff_aflow': entry_wyckoffs_aflow})
     return df_wyckoff
     
-def save_results(df_wyckoff, search_results, output_path):    
+def save_results(df_wyckoff, search_results):    
     df_wyckoff = pd.concat(df_wyckoff).reset_index()
     print(f'Successful featurisations: {len(df_wyckoff)/len(search_results)*100:.2f}%')
     print(f'Unique featurisations: {len(df_wyckoff.identifier.unique())/len(search_results)*100:.2f}%')
 
-    df_wyckoff.to_csv(output_path, index=False)
+    df_wyckoff.to_csv('aflow_vs_spg.csv', index=False)
     return
 
-def main(num_results:int = -1,
-         output_path:str = 'aflow_vs_spg.csv'):
-    
+def main(n:int = 100):
     mpi_comm = MPI.COMM_WORLD
     mpi_rank = mpi_comm.Get_rank()
     mpi_size = mpi_comm.Get_size()
     
-    search_results = search_ccdc_for_organic_mols(num_results)
+    search_results = search_ccdc_for_organic_mols(n)
     my_results = slice_search_results(mpi_rank, mpi_size, search_results)
     my_df = get_aflow_labels_for_search_results(my_results)
     
@@ -96,7 +93,7 @@ def main(num_results:int = -1,
     df_wyckoff = mpi_comm.gather(my_df, root=0)
 
     if mpi_rank == 0:
-        save_results(df_wyckoff, search_results, output_path)
+        save_results(df_wyckoff, search_results)
     return
 
 if __name__ == '__main__':

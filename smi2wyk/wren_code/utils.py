@@ -17,9 +17,9 @@ from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
 
 from ccdc.crystal import Crystal
 
-module_dir = dirname(abspath(__file__))
+module_dir = '/home/wjm41/ml_physics/smi2wyk/smi2wyk/wren_code/'
 
-mult_file = join(module_dir, "wp-mult.json")
+mult_file = join(module_dir, "wp-multi.json")
 param_file = join(module_dir, "wp-params.json")
 relab_file = join(module_dir, "wp-relab.json")
 
@@ -166,7 +166,8 @@ def get_aflow_label_with_aflow_from_ccdc_crystal(crystal: Crystal, aflow_executa
 
     # check that multiplicities satisfy original composition
     _, _, spg_no, *wyks = aflow_label.split("_")
-    elems = sorted([re.sub("([A-Z]).*", r"\1", elem) for elem in crystal.formula.split(" ")])
+    # elems = sorted([re.sub("([A-Z].*).[0-9]", r"\1", elem) for elem in crystal.formula.split(" ")])
+    elems = sorted([elem.translate(remove_digits).replace('.', '') for elem in crystal.formula.split(" ")])
 
     elem_dict = {}
     subst = r"1\g<1>"  # normalize Wyckoff letters to start with 1 if missing digit
@@ -492,7 +493,7 @@ def return_spacegroup_number(aflow_str: str) -> int:
     """Count number of distinct space group number in Wyckoff representation."""
     aflow_str, _ = aflow_str.split(":")
     _, _, spg_no, *wyk = aflow_str.split("_")
-    return spg_no
+    return int(spg_no)
 
 def tokenize_prototype_label(aflow_str: str) -> int:
     """Count number of distinct space group number in Wyckoff representation."""
