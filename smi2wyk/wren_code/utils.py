@@ -17,7 +17,7 @@ from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
 
 from ccdc.crystal import Crystal
 
-module_dir = dirname(abspath(__file__))
+module_dir = '/Users/williammccorkindale/ml_physics/smi2wyck/smi2wyk/wren_code'
 
 mult_file = join(module_dir, "wp-mult.json")
 param_file = join(module_dir, "wp-params.json")
