@@ -221,3 +221,5 @@ def submit_translation_job(dataset:str, step:int, beam_size:int = 10):
     return
 
 #TODO check if sbatch works as importable python function
+
+# TODO - add weighed sampling by space group

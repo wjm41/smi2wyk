@@ -48,3 +48,5 @@ def test_aflow_label_from_spglib(csd_reader, entry_name):
     spg_ccdc = crystal.spacegroup_number_and_setting[0]
 
     assert (spg_ccdc == spg_spglib)
+    
+# TODO - implement tests as github actions

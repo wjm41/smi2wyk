@@ -4,7 +4,6 @@ from fire import Fire
 import numpy as np
 from mpi4py import MPI
 
-
 from smi2wyk.aflow import get_aflow_label_spglib, CifStringParser, get_aflow_label_with_aflow_from_ccdc_crystal
 from smi2wyk.ccsd_utils import search_ccdc_for_organic_mols
 from smi2wyk.utils import slice_object_according_to_rank_and_size

@@ -231,3 +231,4 @@ dependencies:
     - zipp==3.7.0
 prefix: /rds-d2/user/wjm41/hpc-work/conda/envs/ampere
 
+# TODO - update environemnt with ccdc reqirements?
