@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH -J subm_mpi_aflow
+#SBATCH -A LEE-WJM41-SL2-CPU
+#SBATCH --nodes=1
+#SBATCH --ntasks=76
+ #SBATCH --cpus-per-task=1
+#SBATCH --time=3:00:00
+#SBATCH --mail-user=wjm41@cam.ac.uk
+#SBATCH --output=/home/wjm41/ml_physics/smi2wyk/notebooks/subm_mpi_aflow.out
+#SBATCH -p icelake-himem
+#SBATCH --mail-type=ALL
+. /etc/profile.d/modules.sh
+module purge
+module load rhel8/default-amp
+module load miniconda/3
+source activate csd_env
+
+mpirun -np 76 -ppn 76 python mpi_aflow_generation.py --output_path /home/wjm41/ml_physics/smi2wyk/data/smi2protopear/csd_organic_aflow.csv

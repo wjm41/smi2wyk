@@ -1,0 +1,28 @@
+Loading rhel8/default-amp
+  Loading requirement: dot rhel8/slurm singularity/current rhel8/global
+    cuda/11.4 openmpi/4.1.1/gcc-9.4.0-epagguv
+[2022-05-19 14:41:06,731 INFO] Translating shard 0.
+/rds-d2/user/wjm41/hpc-work/conda/envs/DebiasedMT/lib/python3.8/site-packages/onmt/translate/beam_search.py:282: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the 'trunc' function NOT 'floor'). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode='trunc'), or for actual floor division, use torch.div(a, b, rounding_mode='floor').
+  self._batch_index = self.topk_ids // vocab_size
+[2022-05-19 14:41:23,444 INFO] PRED AVG SCORE: -0.8125, PRED PPL: 2.2535
+[2022-05-19 14:41:23,473 INFO] Translating shard 1.
+[2022-05-19 14:41:39,718 INFO] PRED AVG SCORE: -0.8138, PRED PPL: 2.2565
+[2022-05-19 14:41:39,750 INFO] Translating shard 2.
+[2022-05-19 14:41:56,121 INFO] PRED AVG SCORE: -0.8133, PRED PPL: 2.2554
+[2022-05-19 14:41:56,150 INFO] Translating shard 3.
+[2022-05-19 14:42:01,500 INFO] PRED AVG SCORE: -0.8108, PRED PPL: 2.2498
+33268
+Traceback (most recent call last):
+  File "/home/wjm41/ml_physics/smi2wyk/smi2wyk/score_predictions.py", line 75, in <module>
+    main(opt)
+  File "/home/wjm41/ml_physics/smi2wyk/smi2wyk/score_predictions.py", line 46, in main
+    test_df['prediction_{}'.format(i + 1)] = preds
+  File "/rds-d2/user/wjm41/hpc-work/conda/envs/DebiasedMT/lib/python3.8/site-packages/pandas/core/frame.py", line 3655, in __setitem__
+    self._set_item(key, value)
+  File "/rds-d2/user/wjm41/hpc-work/conda/envs/DebiasedMT/lib/python3.8/site-packages/pandas/core/frame.py", line 3832, in _set_item
+    value = self._sanitize_column(value)
+  File "/rds-d2/user/wjm41/hpc-work/conda/envs/DebiasedMT/lib/python3.8/site-packages/pandas/core/frame.py", line 4529, in _sanitize_column
+    com.require_length_match(value, self.index)
+  File "/rds-d2/user/wjm41/hpc-work/conda/envs/DebiasedMT/lib/python3.8/site-packages/pandas/core/common.py", line 557, in require_length_match
+    raise ValueError(
+ValueError: Length of values (66536) does not match length of index (33268)
