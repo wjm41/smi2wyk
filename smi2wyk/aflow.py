@@ -495,20 +495,3 @@ def return_spacegroup_number(aflow_str: str) -> int:
     aflow_str, _ = aflow_str.split(":")
     _, _, spg_no, *wyk = aflow_str.split("_")
     return int(spg_no)
-
-def tokenize_prototype_label(aflow_str: str) -> int:
-    """Count number of distinct space group number in Wyckoff representation."""
-    aflow_str, _ = aflow_str.split(":")
-    prototype, pearson, spg_no, *wyk = aflow_str.split("_")
-    prototype_tokenized = ' '.join(re.split('(\d+)',prototype))
-    prototype_tokenized = re.sub('([A-Z])([A-Z])', r'\1 \2', prototype_tokenized)
-    return prototype_tokenized
-
-def tokenize_pearson_label(aflow_str: str) -> int:
-    """Count number of distinct space group number in Wyckoff representation."""
-    aflow_str, _ = aflow_str.split(":")
-    prototype, pearson, spg_no, *wyk = aflow_str.split("_")
-    pearson_tokenized = re.split('(\d+)',pearson)
-    pearson_tokenized = ' '.join(list(pearson_tokenized[0]) + pearson_tokenized[1:])
-    # pearson_tokenized = [' '.join(re.split('([a-zA-Z])', token)) for token in pearson_tokenized]
-    return pearson_tokenized
