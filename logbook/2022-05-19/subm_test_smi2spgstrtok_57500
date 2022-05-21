@@ -1,0 +1,19 @@
+#!/bin/bash
+#SBATCH -J subm_test_smi2spgstrtok_57500
+#SBATCH -A LEE-WJM41-SL2-GPU
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --gres=gpu:1
+#SBATCH --time=1:00:00
+#SBATCH --mail-user=wjm41@cam.ac.uk
+#SBATCH --output=/home/wjm41/ml_physics/smi2wyk/logbook/2022-05-19/subm_test_smi2spgstrtok_57500.out
+#SBATCH -p ampere
+#SBATCH --mail-type=ALL
+. /etc/profile.d/modules.sh
+module purge
+module load rhel8/default-amp
+module load miniconda/3
+source activate DebiasedMT
+
+onmt_translate -model /rds-d2/user/wjm41/hpc-work/models/smi2wyk/smi2spgstrtok/model_step_57500.pt -src /home/wjm41/ml_physics/smi2wyk/data/smi2spgstrtok/src-test.csv -output /home/wjm41/ml_physics/smi2wyk/data/smi2spgstrtok/pred_step_57500.txt -n_best 10 -beam_size 10 -gpu 0
+python /home/wjm41/ml_physics/smi2wyk/smi2wyk/score_predictions.py -targets /home/wjm41/ml_physics/smi2wyk/data/smi2spgstrtok/tgt-test.csv -beam_size 5 -predictions /home/wjm41/ml_physics/smi2wyk/data/smi2spgstrtok/pred_step_57500.txt

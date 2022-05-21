@@ -1,0 +1,586 @@
+Loading rhel8/default-amp
+  Loading requirement: dot rhel8/slurm singularity/current rhel8/global
+    cuda/11.4 openmpi/4.1.1/gcc-9.4.0-epagguv
+Corpus train's weight should be given. We default it to 1 for you.
+[2022-05-19 12:22:32,466 INFO] Counter vocab from -1 samples.
+[2022-05-19 12:22:32,466 INFO] n_sample=-1: Build vocab on full datasets.
+[2022-05-19 12:22:32,473 INFO] train's transforms: TransformPipe()
+[2022-05-19 12:22:35,192 INFO] Counters src:302
+[2022-05-19 12:22:35,192 INFO] Counters tgt:21
+[2022-05-19 12:22:36,735 INFO] Missing transforms field for train data, set to default: [].
+[2022-05-19 12:22:36,735 WARNING] Corpus train's weight should be given. We default it to 1 for you.
+[2022-05-19 12:22:36,735 INFO] Missing transforms field for valid data, set to default: [].
+[2022-05-19 12:22:36,735 INFO] Parsed 2 corpora from -data.
+[2022-05-19 12:22:36,735 INFO] Get special vocabs from Transforms: {'src': set(), 'tgt': set()}.
+[2022-05-19 12:22:36,735 INFO] Loading vocab from text file...
+[2022-05-19 12:22:36,736 INFO] Loading src vocabulary from /home/wjm41/ml_physics/smi2wyk/data/smi2spgstrtok/vocab.src
+[2022-05-19 12:22:36,736 INFO] Loaded src vocab has 302 tokens.
+[2022-05-19 12:22:36,737 INFO] Loading tgt vocabulary from /home/wjm41/ml_physics/smi2wyk/data/smi2spgstrtok/vocab.tgt
+[2022-05-19 12:22:36,737 INFO] Loaded tgt vocab has 21 tokens.
+[2022-05-19 12:22:36,737 INFO] Building fields with vocab in counters...
+[2022-05-19 12:22:36,737 INFO]  * tgt vocab size: 25.
+[2022-05-19 12:22:36,737 INFO]  * src vocab size: 304.
+[2022-05-19 12:22:36,737 INFO]  * src vocab size = 304
+[2022-05-19 12:22:36,737 INFO]  * tgt vocab size = 25
+[2022-05-19 12:22:36,740 INFO] Building model...
+[2022-05-19 12:22:39,676 INFO] NMTModel(
+  (encoder): TransformerEncoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(304, 256, padding_idx=1)
+        )
+        (pe): PositionalEncoding(
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+      )
+    )
+    (transformer): ModuleList(
+      (0): TransformerEncoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linear_keys): Linear(in_features=256, out_features=256, bias=True)
+          (linear_values): Linear(in_features=256, out_features=256, bias=True)
+          (linear_query): Linear(in_features=256, out_features=256, bias=True)
+          (softmax): Softmax(dim=-1)
+          (dropout): Dropout(p=0.1, inplace=False)
+          (final_linear): Linear(in_features=256, out_features=256, bias=True)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (layer_norm): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+          (dropout_1): Dropout(p=0.1, inplace=False)
+          (dropout_2): Dropout(p=0.1, inplace=False)
+        )
+        (layer_norm): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+      )
+      (1): TransformerEncoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linear_keys): Linear(in_features=256, out_features=256, bias=True)
+          (linear_values): Linear(in_features=256, out_features=256, bias=True)
+          (linear_query): Linear(in_features=256, out_features=256, bias=True)
+          (softmax): Softmax(dim=-1)
+          (dropout): Dropout(p=0.1, inplace=False)
+          (final_linear): Linear(in_features=256, out_features=256, bias=True)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (layer_norm): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+          (dropout_1): Dropout(p=0.1, inplace=False)
+          (dropout_2): Dropout(p=0.1, inplace=False)
+        )
+        (layer_norm): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+      )
+      (2): TransformerEncoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linear_keys): Linear(in_features=256, out_features=256, bias=True)
+          (linear_values): Linear(in_features=256, out_features=256, bias=True)
+          (linear_query): Linear(in_features=256, out_features=256, bias=True)
+          (softmax): Softmax(dim=-1)
+          (dropout): Dropout(p=0.1, inplace=False)
+          (final_linear): Linear(in_features=256, out_features=256, bias=True)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (layer_norm): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+          (dropout_1): Dropout(p=0.1, inplace=False)
+          (dropout_2): Dropout(p=0.1, inplace=False)
+        )
+        (layer_norm): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+      )
+      (3): TransformerEncoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linear_keys): Linear(in_features=256, out_features=256, bias=True)
+          (linear_values): Linear(in_features=256, out_features=256, bias=True)
+          (linear_query): Linear(in_features=256, out_features=256, bias=True)
+          (softmax): Softmax(dim=-1)
+          (dropout): Dropout(p=0.1, inplace=False)
+          (final_linear): Linear(in_features=256, out_features=256, bias=True)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (layer_norm): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+          (dropout_1): Dropout(p=0.1, inplace=False)
+          (dropout_2): Dropout(p=0.1, inplace=False)
+        )
+        (layer_norm): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+      )
+    )
+    (layer_norm): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+  )
+  (decoder): TransformerDecoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(25, 256, padding_idx=1)
+        )
+        (pe): PositionalEncoding(
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+      )
+    )
+    (layer_norm): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+    (transformer_layers): ModuleList(
+      (0): TransformerDecoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linear_keys): Linear(in_features=256, out_features=256, bias=True)
+          (linear_values): Linear(in_features=256, out_features=256, bias=True)
+          (linear_query): Linear(in_features=256, out_features=256, bias=True)
+          (softmax): Softmax(dim=-1)
+          (dropout): Dropout(p=0.1, inplace=False)
+          (final_linear): Linear(in_features=256, out_features=256, bias=True)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (layer_norm): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+          (dropout_1): Dropout(p=0.1, inplace=False)
+          (dropout_2): Dropout(p=0.1, inplace=False)
+        )
+        (layer_norm_1): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+        (drop): Dropout(p=0.1, inplace=False)
+        (context_attn): MultiHeadedAttention(
+          (linear_keys): Linear(in_features=256, out_features=256, bias=True)
+          (linear_values): Linear(in_features=256, out_features=256, bias=True)
+          (linear_query): Linear(in_features=256, out_features=256, bias=True)
+          (softmax): Softmax(dim=-1)
+          (dropout): Dropout(p=0.1, inplace=False)
+          (final_linear): Linear(in_features=256, out_features=256, bias=True)
+        )
+        (layer_norm_2): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+      )
+      (1): TransformerDecoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linear_keys): Linear(in_features=256, out_features=256, bias=True)
+          (linear_values): Linear(in_features=256, out_features=256, bias=True)
+          (linear_query): Linear(in_features=256, out_features=256, bias=True)
+          (softmax): Softmax(dim=-1)
+          (dropout): Dropout(p=0.1, inplace=False)
+          (final_linear): Linear(in_features=256, out_features=256, bias=True)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (layer_norm): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+          (dropout_1): Dropout(p=0.1, inplace=False)
+          (dropout_2): Dropout(p=0.1, inplace=False)
+        )
+        (layer_norm_1): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+        (drop): Dropout(p=0.1, inplace=False)
+        (context_attn): MultiHeadedAttention(
+          (linear_keys): Linear(in_features=256, out_features=256, bias=True)
+          (linear_values): Linear(in_features=256, out_features=256, bias=True)
+          (linear_query): Linear(in_features=256, out_features=256, bias=True)
+          (softmax): Softmax(dim=-1)
+          (dropout): Dropout(p=0.1, inplace=False)
+          (final_linear): Linear(in_features=256, out_features=256, bias=True)
+        )
+        (layer_norm_2): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+      )
+      (2): TransformerDecoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linear_keys): Linear(in_features=256, out_features=256, bias=True)
+          (linear_values): Linear(in_features=256, out_features=256, bias=True)
+          (linear_query): Linear(in_features=256, out_features=256, bias=True)
+          (softmax): Softmax(dim=-1)
+          (dropout): Dropout(p=0.1, inplace=False)
+          (final_linear): Linear(in_features=256, out_features=256, bias=True)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (layer_norm): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+          (dropout_1): Dropout(p=0.1, inplace=False)
+          (dropout_2): Dropout(p=0.1, inplace=False)
+        )
+        (layer_norm_1): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+        (drop): Dropout(p=0.1, inplace=False)
+        (context_attn): MultiHeadedAttention(
+          (linear_keys): Linear(in_features=256, out_features=256, bias=True)
+          (linear_values): Linear(in_features=256, out_features=256, bias=True)
+          (linear_query): Linear(in_features=256, out_features=256, bias=True)
+          (softmax): Softmax(dim=-1)
+          (dropout): Dropout(p=0.1, inplace=False)
+          (final_linear): Linear(in_features=256, out_features=256, bias=True)
+        )
+        (layer_norm_2): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+      )
+      (3): TransformerDecoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linear_keys): Linear(in_features=256, out_features=256, bias=True)
+          (linear_values): Linear(in_features=256, out_features=256, bias=True)
+          (linear_query): Linear(in_features=256, out_features=256, bias=True)
+          (softmax): Softmax(dim=-1)
+          (dropout): Dropout(p=0.1, inplace=False)
+          (final_linear): Linear(in_features=256, out_features=256, bias=True)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=256, out_features=2048, bias=True)
+          (w_2): Linear(in_features=2048, out_features=256, bias=True)
+          (layer_norm): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+          (dropout_1): Dropout(p=0.1, inplace=False)
+          (dropout_2): Dropout(p=0.1, inplace=False)
+        )
+        (layer_norm_1): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+        (drop): Dropout(p=0.1, inplace=False)
+        (context_attn): MultiHeadedAttention(
+          (linear_keys): Linear(in_features=256, out_features=256, bias=True)
+          (linear_values): Linear(in_features=256, out_features=256, bias=True)
+          (linear_query): Linear(in_features=256, out_features=256, bias=True)
+          (softmax): Softmax(dim=-1)
+          (dropout): Dropout(p=0.1, inplace=False)
+          (final_linear): Linear(in_features=256, out_features=256, bias=True)
+        )
+        (layer_norm_2): LayerNorm((256,), eps=1e-06, elementwise_affine=True)
+      )
+    )
+  )
+  (generator): Sequential(
+    (0): Linear(in_features=256, out_features=25, bias=True)
+    (1): Cast()
+    (2): LogSoftmax(dim=-1)
+  )
+)
+[2022-05-19 12:22:39,677 INFO] encoder: 5338624
+[2022-05-19 12:22:39,677 INFO] decoder: 6328345
+[2022-05-19 12:22:39,677 INFO] * number of parameters: 11666969
+[2022-05-19 12:22:39,810 INFO] Starting training on GPU: [0]
+[2022-05-19 12:22:39,810 INFO] Start training loop and validate every 5000 steps...
+[2022-05-19 12:22:39,810 INFO] train's transforms: TransformPipe()
+[2022-05-19 12:22:39,810 INFO] Weighted corpora loaded so far:
+			* train: 1
+[2022-05-19 12:24:13,368 INFO] Step 1000/500000; acc:  78.25; ppl:  1.94; xent: 0.66; lr: 0.00017; 39850/3729 tok/s;     94 sec
+[2022-05-19 12:25:46,725 INFO] Step 2000/500000; acc:  83.97; ppl:  1.55; xent: 0.44; lr: 0.00035; 39932/3745 tok/s;    187 sec
+[2022-05-19 12:26:33,540 INFO] Saving checkpoint /rds-d2/user/wjm41/hpc-work/models/smi2wyk/smi2spgstrtok/model_step_2500.pt
+[2022-05-19 12:27:20,660 INFO] Step 3000/500000; acc:  84.36; ppl:  1.53; xent: 0.43; lr: 0.00052; 39710/3722 tok/s;    281 sec
+[2022-05-19 12:28:54,932 INFO] Step 4000/500000; acc:  84.43; ppl:  1.53; xent: 0.43; lr: 0.00070; 39564/3713 tok/s;    375 sec
+[2022-05-19 12:29:11,066 INFO] Weighted corpora loaded so far:
+			* train: 2
+[2022-05-19 12:30:29,220 INFO] Step 5000/500000; acc:  84.48; ppl:  1.53; xent: 0.43; lr: 0.00087; 39504/3713 tok/s;    469 sec
+[2022-05-19 12:30:29,221 INFO] valid's transforms: TransformPipe()
+[2022-05-19 12:30:29,299 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:30:43,922 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:30:58,547 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:31:13,175 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:31:13,178 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:31:13,180 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:31:27,868 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:31:27,868 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:31:42,488 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:31:57,128 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:32:11,758 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:32:26,401 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:32:41,038 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:32:41,039 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:32:55,685 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:33:10,308 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:33:39,578 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:33:54,182 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:34:03,240 INFO] Validation perplexity: 1.52671
+[2022-05-19 12:34:03,240 INFO] Validation accuracy: 84.7872
+[2022-05-19 12:34:03,242 INFO] Saving checkpoint /rds-d2/user/wjm41/hpc-work/models/smi2wyk/smi2spgstrtok/model_step_5000.pt
+[2022-05-19 12:35:39,518 INFO] Step 6000/500000; acc:  84.39; ppl:  1.53; xent: 0.43; lr: 0.00105; 12003/1122 tok/s;    780 sec
+[2022-05-19 12:37:12,919 INFO] Step 7000/500000; acc:  84.38; ppl:  1.54; xent: 0.43; lr: 0.00122; 39869/3734 tok/s;    873 sec
+[2022-05-19 12:37:59,643 INFO] Saving checkpoint /rds-d2/user/wjm41/hpc-work/models/smi2wyk/smi2spgstrtok/model_step_7500.pt
+[2022-05-19 12:38:49,350 INFO] Step 8000/500000; acc:  84.39; ppl:  1.54; xent: 0.43; lr: 0.00140; 38685/3640 tok/s;    970 sec
+[2022-05-19 12:39:25,065 INFO] Weighted corpora loaded so far:
+			* train: 3
+[2022-05-19 12:40:22,943 INFO] Step 9000/500000; acc:  84.28; ppl:  1.54; xent: 0.43; lr: 0.00132; 39805/3726 tok/s;   1063 sec
+[2022-05-19 12:41:56,184 INFO] Step 10000/500000; acc:  84.31; ppl:  1.54; xent: 0.43; lr: 0.00125; 39926/3730 tok/s;   1156 sec
+[2022-05-19 12:41:56,215 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:42:10,877 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:42:25,538 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:42:40,263 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:42:40,266 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:42:40,268 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:42:54,919 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:42:54,919 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:43:09,589 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:43:24,250 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:43:38,991 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:43:53,663 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:44:08,328 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:44:08,329 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:44:22,967 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:44:37,623 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:45:07,004 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:45:21,667 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:45:30,743 INFO] Validation perplexity: 1.52184
+[2022-05-19 12:45:30,743 INFO] Validation accuracy: 84.8221
+[2022-05-19 12:45:30,745 INFO] Saving checkpoint /rds-d2/user/wjm41/hpc-work/models/smi2wyk/smi2spgstrtok/model_step_10000.pt
+[2022-05-19 12:47:04,429 INFO] Step 11000/500000; acc:  84.55; ppl:  1.53; xent: 0.42; lr: 0.00119; 12099/1136 tok/s;   1465 sec
+[2022-05-19 12:48:37,882 INFO] Step 12000/500000; acc:  84.67; ppl:  1.52; xent: 0.42; lr: 0.00114; 39869/3738 tok/s;   1558 sec
+[2022-05-19 12:49:24,558 INFO] Saving checkpoint /rds-d2/user/wjm41/hpc-work/models/smi2wyk/smi2spgstrtok/model_step_12500.pt
+[2022-05-19 12:49:30,483 INFO] Weighted corpora loaded so far:
+			* train: 4
+[2022-05-19 12:50:11,885 INFO] Step 13000/500000; acc:  84.39; ppl:  1.54; xent: 0.43; lr: 0.00110; 39638/3724 tok/s;   1652 sec
+[2022-05-19 12:51:45,497 INFO] Step 14000/500000; acc:  84.46; ppl:  1.53; xent: 0.42; lr: 0.00106; 39791/3718 tok/s;   1746 sec
+[2022-05-19 12:53:19,101 INFO] Step 15000/500000; acc:  84.66; ppl:  1.52; xent: 0.42; lr: 0.00102; 39867/3748 tok/s;   1839 sec
+[2022-05-19 12:53:19,158 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:53:33,810 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:53:48,477 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:54:03,133 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:54:03,136 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:54:03,138 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:54:17,768 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:54:17,768 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:54:32,448 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:54:47,076 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:55:01,742 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:55:16,415 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:55:31,120 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:55:31,121 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:55:45,776 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:56:00,428 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:56:29,761 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:56:44,402 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 12:56:53,465 INFO] Validation perplexity: 1.51388
+[2022-05-19 12:56:53,465 INFO] Validation accuracy: 84.9154
+[2022-05-19 12:56:53,467 INFO] Saving checkpoint /rds-d2/user/wjm41/hpc-work/models/smi2wyk/smi2spgstrtok/model_step_15000.pt
+[2022-05-19 12:58:27,152 INFO] Step 16000/500000; acc:  84.73; ppl:  1.52; xent: 0.42; lr: 0.00099; 12105/1137 tok/s;   2147 sec
+[2022-05-19 12:59:38,467 INFO] Weighted corpora loaded so far:
+			* train: 5
+[2022-05-19 13:00:00,503 INFO] Step 17000/500000; acc:  84.67; ppl:  1.52; xent: 0.42; lr: 0.00096; 39928/3735 tok/s;   2241 sec
+[2022-05-19 13:00:47,416 INFO] Saving checkpoint /rds-d2/user/wjm41/hpc-work/models/smi2wyk/smi2spgstrtok/model_step_17500.pt
+[2022-05-19 13:01:34,884 INFO] Step 18000/500000; acc:  84.76; ppl:  1.52; xent: 0.42; lr: 0.00093; 39446/3691 tok/s;   2335 sec
+[2022-05-19 13:03:08,574 INFO] Step 19000/500000; acc:  84.81; ppl:  1.52; xent: 0.42; lr: 0.00091; 39772/3734 tok/s;   2429 sec
+[2022-05-19 13:04:41,987 INFO] Step 20000/500000; acc:  84.83; ppl:  1.51; xent: 0.41; lr: 0.00088; 39911/3740 tok/s;   2522 sec
+[2022-05-19 13:04:42,014 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:04:56,616 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:05:11,316 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:05:25,925 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:05:25,928 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:05:25,930 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:05:40,519 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:05:40,520 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:05:55,155 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:06:09,784 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:06:24,468 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:06:39,118 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:06:53,724 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:06:53,726 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:07:08,322 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:07:22,956 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:07:52,233 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:08:06,857 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:08:15,905 INFO] Validation perplexity: 1.50499
+[2022-05-19 13:08:15,905 INFO] Validation accuracy: 85.0338
+[2022-05-19 13:08:15,907 INFO] Saving checkpoint /rds-d2/user/wjm41/hpc-work/models/smi2wyk/smi2spgstrtok/model_step_20000.pt
+[2022-05-19 13:09:43,892 INFO] Weighted corpora loaded so far:
+			* train: 6
+[2022-05-19 13:09:49,567 INFO] Step 21000/500000; acc:  84.83; ppl:  1.51; xent: 0.41; lr: 0.00086; 12133/1140 tok/s;   2830 sec
+[2022-05-19 13:11:22,959 INFO] Step 22000/500000; acc:  84.78; ppl:  1.51; xent: 0.41; lr: 0.00084; 39837/3730 tok/s;   2923 sec
+[2022-05-19 13:12:11,046 INFO] Saving checkpoint /rds-d2/user/wjm41/hpc-work/models/smi2wyk/smi2spgstrtok/model_step_22500.pt
+[2022-05-19 13:12:58,058 INFO] Step 23000/500000; acc:  84.83; ppl:  1.51; xent: 0.41; lr: 0.00082; 39203/3672 tok/s;   3018 sec
+[2022-05-19 13:14:31,160 INFO] Step 24000/500000; acc:  84.90; ppl:  1.51; xent: 0.41; lr: 0.00081; 40037/3752 tok/s;   3111 sec
+[2022-05-19 13:16:04,271 INFO] Step 25000/500000; acc:  84.88; ppl:  1.51; xent: 0.41; lr: 0.00079; 40052/3766 tok/s;   3204 sec
+[2022-05-19 13:16:04,297 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:16:18,789 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:16:33,266 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:16:47,736 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:16:47,773 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:16:47,776 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:17:02,253 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:17:02,253 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:17:16,678 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:17:31,081 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:17:45,430 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:17:59,763 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:18:14,059 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:18:14,060 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:18:28,392 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:18:42,663 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:19:11,332 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:19:25,678 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:19:34,535 INFO] Validation perplexity: 1.51059
+[2022-05-19 13:19:34,535 INFO] Validation accuracy: 84.7896
+[2022-05-19 13:19:34,537 INFO] Saving checkpoint /rds-d2/user/wjm41/hpc-work/models/smi2wyk/smi2spgstrtok/model_step_25000.pt
+[2022-05-19 13:19:48,394 INFO] Weighted corpora loaded so far:
+			* train: 7
+[2022-05-19 13:21:06,560 INFO] Step 26000/500000; acc:  84.83; ppl:  1.51; xent: 0.41; lr: 0.00078; 12320/1155 tok/s;   3507 sec
+[2022-05-19 13:22:38,489 INFO] Step 27000/500000; acc:  84.86; ppl:  1.51; xent: 0.41; lr: 0.00076; 40514/3793 tok/s;   3599 sec
+[2022-05-19 13:23:24,777 INFO] Saving checkpoint /rds-d2/user/wjm41/hpc-work/models/smi2wyk/smi2spgstrtok/model_step_27500.pt
+[2022-05-19 13:24:11,309 INFO] Step 28000/500000; acc:  85.00; ppl:  1.51; xent: 0.41; lr: 0.00075; 40145/3761 tok/s;   3691 sec
+[2022-05-19 13:25:43,806 INFO] Step 29000/500000; acc:  84.90; ppl:  1.51; xent: 0.41; lr: 0.00073; 40299/3781 tok/s;   3784 sec
+[2022-05-19 13:26:16,500 INFO] Weighted corpora loaded so far:
+			* train: 8
+[2022-05-19 13:27:15,828 INFO] Step 30000/500000; acc:  84.91; ppl:  1.51; xent: 0.41; lr: 0.00072; 40511/3805 tok/s;   3876 sec
+[2022-05-19 13:27:15,854 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:27:30,119 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:27:46,434 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:28:00,743 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:28:00,746 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:28:00,748 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:28:15,165 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:28:15,166 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:28:29,441 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:28:43,765 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:28:58,130 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:29:12,465 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:29:26,768 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:29:26,769 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:29:41,124 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:29:55,406 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:30:24,067 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:30:38,378 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:30:47,242 INFO] Validation perplexity: 1.50172
+[2022-05-19 13:30:47,242 INFO] Validation accuracy: 85.0418
+[2022-05-19 13:30:47,244 INFO] Saving checkpoint /rds-d2/user/wjm41/hpc-work/models/smi2wyk/smi2spgstrtok/model_step_30000.pt
+[2022-05-19 13:32:20,248 INFO] Step 31000/500000; acc:  84.81; ppl:  1.51; xent: 0.41; lr: 0.00071; 12232/1142 tok/s;   4180 sec
+[2022-05-19 13:33:52,846 INFO] Step 32000/500000; acc:  85.04; ppl:  1.50; xent: 0.41; lr: 0.00070; 40290/3784 tok/s;   4273 sec
+[2022-05-19 13:34:39,090 INFO] Saving checkpoint /rds-d2/user/wjm41/hpc-work/models/smi2wyk/smi2spgstrtok/model_step_32500.pt
+[2022-05-19 13:35:25,636 INFO] Step 33000/500000; acc:  85.06; ppl:  1.50; xent: 0.41; lr: 0.00069; 40199/3769 tok/s;   4366 sec
+[2022-05-19 13:36:14,428 INFO] Weighted corpora loaded so far:
+			* train: 9
+[2022-05-19 13:36:57,636 INFO] Step 34000/500000; acc:  84.96; ppl:  1.51; xent: 0.41; lr: 0.00068; 40485/3800 tok/s;   4458 sec
+[2022-05-19 13:38:29,650 INFO] Step 35000/500000; acc:  84.91; ppl:  1.50; xent: 0.41; lr: 0.00067; 40449/3786 tok/s;   4550 sec
+[2022-05-19 13:38:29,707 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:38:43,966 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:38:58,247 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:39:12,503 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:39:12,505 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:39:12,508 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:39:26,775 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:39:26,775 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:39:41,070 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:39:55,343 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:40:09,594 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:40:23,892 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:40:38,182 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:40:38,183 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:40:52,412 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:41:06,691 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:41:35,237 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:41:49,493 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:41:58,322 INFO] Validation perplexity: 1.49692
+[2022-05-19 13:41:58,322 INFO] Validation accuracy: 85.1584
+[2022-05-19 13:41:58,325 INFO] Saving checkpoint /rds-d2/user/wjm41/hpc-work/models/smi2wyk/smi2spgstrtok/model_step_35000.pt
+[2022-05-19 13:43:30,863 INFO] Step 36000/500000; acc:  85.07; ppl:  1.50; xent: 0.41; lr: 0.00066; 12375/1163 tok/s;   4851 sec
+[2022-05-19 13:45:02,911 INFO] Step 37000/500000; acc:  85.06; ppl:  1.50; xent: 0.41; lr: 0.00065; 40471/3790 tok/s;   4943 sec
+[2022-05-19 13:45:49,130 INFO] Saving checkpoint /rds-d2/user/wjm41/hpc-work/models/smi2wyk/smi2spgstrtok/model_step_37500.pt
+[2022-05-19 13:46:11,902 INFO] Weighted corpora loaded so far:
+			* train: 10
+[2022-05-19 13:46:35,725 INFO] Step 38000/500000; acc:  84.98; ppl:  1.51; xent: 0.41; lr: 0.00064; 40148/3767 tok/s;   5036 sec
+[2022-05-19 13:48:08,205 INFO] Step 39000/500000; acc:  85.01; ppl:  1.50; xent: 0.41; lr: 0.00063; 40240/3765 tok/s;   5128 sec
+[2022-05-19 13:49:40,656 INFO] Step 40000/500000; acc:  85.03; ppl:  1.50; xent: 0.41; lr: 0.00062; 40323/3783 tok/s;   5221 sec
+[2022-05-19 13:49:40,692 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:49:55,176 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:50:09,617 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:50:24,055 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:50:24,057 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:50:24,060 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:50:38,472 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:50:38,472 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:50:52,941 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:51:07,390 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:51:21,830 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:51:36,275 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:51:50,732 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:51:50,733 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:52:05,171 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:52:19,645 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:52:48,493 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:53:02,888 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 13:53:11,827 INFO] Validation perplexity: 1.49572
+[2022-05-19 13:53:11,827 INFO] Validation accuracy: 85.1995
+[2022-05-19 13:53:11,830 INFO] Saving checkpoint /rds-d2/user/wjm41/hpc-work/models/smi2wyk/smi2spgstrtok/model_step_40000.pt
+[2022-05-19 13:54:44,232 INFO] Step 41000/500000; acc:  85.05; ppl:  1.50; xent: 0.41; lr: 0.00062; 12284/1154 tok/s;   5524 sec
+[2022-05-19 13:56:11,268 INFO] Weighted corpora loaded so far:
+			* train: 11
+[2022-05-19 13:56:19,559 INFO] Step 42000/500000; acc:  85.08; ppl:  1.50; xent: 0.41; lr: 0.00061; 39084/3666 tok/s;   5620 sec
+[2022-05-19 13:57:08,446 INFO] Saving checkpoint /rds-d2/user/wjm41/hpc-work/models/smi2wyk/smi2spgstrtok/model_step_42500.pt
+[2022-05-19 13:57:54,754 INFO] Step 43000/500000; acc:  84.98; ppl:  1.50; xent: 0.41; lr: 0.00060; 39117/3665 tok/s;   5715 sec
+[2022-05-19 13:59:26,734 INFO] Step 44000/500000; acc:  85.00; ppl:  1.50; xent: 0.40; lr: 0.00060; 40513/3795 tok/s;   5807 sec
+[2022-05-19 14:00:58,771 INFO] Step 45000/500000; acc:  85.10; ppl:  1.50; xent: 0.40; lr: 0.00059; 40469/3790 tok/s;   5899 sec
+[2022-05-19 14:00:58,797 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:01:13,220 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:01:27,627 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:01:42,043 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:01:42,045 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:01:42,049 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:01:56,472 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:01:56,473 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:02:10,866 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:02:25,197 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:02:39,607 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:02:54,092 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:03:08,485 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:03:08,486 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:03:22,863 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:03:37,251 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:04:06,140 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:04:20,616 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:04:29,558 INFO] Validation perplexity: 1.49459
+[2022-05-19 14:04:29,558 INFO] Validation accuracy: 85.1928
+[2022-05-19 14:04:29,560 INFO] Saving checkpoint /rds-d2/user/wjm41/hpc-work/models/smi2wyk/smi2spgstrtok/model_step_45000.pt
+[2022-05-19 14:06:06,278 INFO] Step 46000/500000; acc:  85.14; ppl:  1.50; xent: 0.41; lr: 0.00058; 12127/1141 tok/s;   6206 sec
+[2022-05-19 14:06:17,952 INFO] Weighted corpora loaded so far:
+			* train: 12
+[2022-05-19 14:07:38,785 INFO] Step 47000/500000; acc:  84.99; ppl:  1.50; xent: 0.41; lr: 0.00058; 40261/3768 tok/s;   6299 sec
+[2022-05-19 14:08:24,796 INFO] Saving checkpoint /rds-d2/user/wjm41/hpc-work/models/smi2wyk/smi2spgstrtok/model_step_47500.pt
+[2022-05-19 14:09:11,136 INFO] Step 48000/500000; acc:  85.06; ppl:  1.50; xent: 0.40; lr: 0.00057; 40345/3776 tok/s;   6391 sec
+[2022-05-19 14:10:43,422 INFO] Step 49000/500000; acc:  85.10; ppl:  1.50; xent: 0.40; lr: 0.00056; 40383/3795 tok/s;   6484 sec
+[2022-05-19 14:12:15,680 INFO] Step 50000/500000; acc:  85.07; ppl:  1.50; xent: 0.40; lr: 0.00056; 40441/3786 tok/s;   6576 sec
+[2022-05-19 14:12:15,706 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:12:30,136 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:12:44,544 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:12:58,930 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:12:58,933 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:12:58,936 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:13:13,315 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:13:13,315 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:13:27,697 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:13:42,112 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:13:56,496 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:14:10,895 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:14:25,280 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:14:25,281 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:14:39,619 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:14:54,077 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:15:22,915 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:15:37,305 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:15:46,182 INFO] Validation perplexity: 1.496
+[2022-05-19 14:15:46,182 INFO] Validation accuracy: 85.175
+[2022-05-19 14:15:46,184 INFO] Saving checkpoint /rds-d2/user/wjm41/hpc-work/models/smi2wyk/smi2spgstrtok/model_step_50000.pt
+[2022-05-19 14:16:14,224 INFO] Weighted corpora loaded so far:
+			* train: 13
+[2022-05-19 14:17:18,908 INFO] Step 51000/500000; acc:  85.05; ppl:  1.50; xent: 0.41; lr: 0.00055; 12282/1155 tok/s;   6879 sec
+[2022-05-19 14:18:51,708 INFO] Step 52000/500000; acc:  84.98; ppl:  1.50; xent: 0.40; lr: 0.00055; 40145/3747 tok/s;   6972 sec
+[2022-05-19 14:19:38,041 INFO] Saving checkpoint /rds-d2/user/wjm41/hpc-work/models/smi2wyk/smi2spgstrtok/model_step_52500.pt
+[2022-05-19 14:20:24,562 INFO] Step 53000/500000; acc:  85.13; ppl:  1.50; xent: 0.40; lr: 0.00054; 40170/3770 tok/s;   7065 sec
+[2022-05-19 14:21:56,929 INFO] Step 54000/500000; acc:  85.21; ppl:  1.50; xent: 0.40; lr: 0.00054; 40378/3795 tok/s;   7157 sec
+[2022-05-19 14:22:43,924 INFO] Weighted corpora loaded so far:
+			* train: 14
+[2022-05-19 14:23:29,471 INFO] Step 55000/500000; acc:  85.04; ppl:  1.50; xent: 0.41; lr: 0.00053; 40265/3774 tok/s;   7250 sec
+[2022-05-19 14:23:29,621 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:23:44,064 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:23:58,485 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:24:12,919 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:24:12,921 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:24:12,924 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:24:27,292 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:24:27,293 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:24:41,707 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:24:56,104 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:25:10,499 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:25:24,951 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:25:39,392 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:25:39,393 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:25:53,824 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:26:08,269 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:26:37,145 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:26:51,527 WARNING] The batch will be filled until we reach 1,its size may exceed 32 tokens
+[2022-05-19 14:27:00,455 INFO] Validation perplexity: 1.49342
+[2022-05-19 14:27:00,455 INFO] Validation accuracy: 85.2486
+[2022-05-19 14:27:00,458 INFO] Saving checkpoint /rds-d2/user/wjm41/hpc-work/models/smi2wyk/smi2spgstrtok/model_step_55000.pt
+[2022-05-19 14:28:32,733 INFO] Step 56000/500000; acc:  85.01; ppl:  1.50; xent: 0.40; lr: 0.00053; 12283/1148 tok/s;   7553 sec
+[2022-05-19 14:30:04,784 INFO] Step 57000/500000; acc:  85.15; ppl:  1.50; xent: 0.40; lr: 0.00052; 40461/3803 tok/s;   7645 sec
+[2022-05-19 14:30:50,969 INFO] Saving checkpoint /rds-d2/user/wjm41/hpc-work/models/smi2wyk/smi2spgstrtok/model_step_57500.pt
+slurmstepd: error: *** JOB 61398303 ON gpu-q-57 CANCELLED AT 2022-05-19T14:31:57 ***

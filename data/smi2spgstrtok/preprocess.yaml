@@ -1,0 +1,13 @@
+data:
+  train:
+    path_src: /home/wjm41/ml_physics/smi2wyk/data/smi2spgstrtok/src-train.csv
+    path_tgt: /home/wjm41/ml_physics/smi2wyk/data/smi2spgstrtok/tgt-train.csv
+  valid:
+    path_src: /home/wjm41/ml_physics/smi2wyk/data/smi2spgstrtok/src-valid.csv
+    path_tgt: /home/wjm41/ml_physics/smi2wyk/data/smi2spgstrtok/tgt-valid.csv
+n_sample: -1
+overwrite: true
+save_data: /home/wjm41/ml_physics/smi2wyk/data/smi2spgstrtok
+share_vocab: false
+src_vocab: /home/wjm41/ml_physics/smi2wyk/data/smi2spgstrtok/vocab.src
+tgt_vocab: /home/wjm41/ml_physics/smi2wyk/data/smi2spgstrtok/vocab.tgt
