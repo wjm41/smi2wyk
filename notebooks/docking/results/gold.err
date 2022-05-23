@@ -1,0 +1,5 @@
+Warning message: 
+check_atom_types: can't deduce type of atom   59 in /Users/williammccorkindale/ml_physics/smi2wyck/notebooks/docking/cavity_C_6LU7.mol2
+
+Warning message: 
+read_cavity_from_ligand: Ligand atom 58 from cavity ligand file '/Users/williammccorkindale/ml_physics/smi2wyck/notebooks/docking/cavity_C_6LU7.mol2' clashes with protein atom 4680

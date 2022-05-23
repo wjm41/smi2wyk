@@ -1,0 +1,8 @@
+# File containing a listing of the fitness of the top-ranked
+# individual for each ligand docked in GOLD.
+#
+# Format is:
+#
+#     Score     S(PLP)   S(hbond)     S(cho)   S(metal)  DE(clash)   DE(tors)     intcor     time                               File name                Ligand name
+
+     43.27     -40.76       1.00       0.00       0.00       0.00       0.81       1.09    0.618  '/Users/williammccorkindale/ml_physics/smi2wyck/notebooks/docking/results//gold_soln_x0072_m1_1.mol2'                     'xxxx'
