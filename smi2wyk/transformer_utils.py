@@ -1,10 +1,11 @@
 
 import os 
-import yaml
-
+from typing import List
 from pathlib import Path
 import re
 
+import yaml
+import pandas as pd
 
 from smi2wyk.utils import write_slurm_script
 
@@ -37,53 +38,9 @@ def tokenize_pearson_symbol(aflow_str: str) -> int:
     return pearson_tokenized
 
 
-def write_default_preprocess_yaml(data_path):
-    preprocess_file_name = f'{data_path}/preprocess.yaml'
-    
-    preprocess_dict = dict(
-        save_data = f'{data_path}',
-        src_vocab = f'{data_path}/vocab.src',
-        tgt_vocab = f'{data_path}/vocab.tgt',
-        overwrite = True,
-        n_sample = -1,
-        share_vocab = False,
-        data = dict(
-            train = dict(
-                path_src = f'{data_path}/src-train.csv',
-                path_tgt = f'{data_path}/tgt-train.csv',
-            ),
-            valid = dict(
-                path_src = f'{data_path}/src-valid.csv',
-                path_tgt = f'{data_path}/tgt-valid.csv',
-            )
-        )
-    )
-    
-    with open(preprocess_file_name, 'w') as f:
-        yaml.dump(preprocess_dict, f)
-    return
-
-def write_default_training_yaml(data_path, dataset_name):
-    training_file_name = f'{data_path}/train_single.yaml'
-    
-    training_dict = dict(
-        save_data = f'{data_path}',
-        src_vocab = f'{data_path}/vocab.src',
-        tgt_vocab = f'{data_path}/vocab.tgt',
-
-        share_vocab = False,
-        data = dict(
-            train = dict(
-                path_src = f'{data_path}/src-train.csv',
-                path_tgt = f'{data_path}/tgt-train.csv',
-            ),
-            valid = dict(
-                path_src = f'{data_path}/src-valid.csv',
-                path_tgt = f'{data_path}/tgt-valid.csv',
-            )
-        ),
+def return_default_training_params(n_gpu=1):
         
-        save_model = f'/rds-d2/user/wjm41/hpc-work/models/smi2wyk/{dataset_name}/model',
+    training_params = dict(
         save_checkpoint_steps = 2500,
         keep_checkpoint = 2,
         seed = 42,
@@ -123,19 +80,137 @@ def write_default_training_yaml(data_path, dataset_name):
         param_init_glorot = 'true',
         position_encoding = 'true',
 
-        world_size = 1,
-        gpu_ranks = [0],
+        world_size = n_gpu,
+        gpu_ranks = [i for i in range(n_gpu)]
+        )
+    
+    return training_params
+
+def return_data_params(data_path, 
+                       share_vocab:bool, 
+                       weighted_sampling:bool =False, 
+                       weight_folder_names: List = None, 
+                       weights: List = None):
+    
+    data_params = dict(
+        save_data = f'{data_path}',
+        src_vocab = f'{data_path}/vocab.src',
+        tgt_vocab = f'{data_path}/vocab.tgt',
+        share_vocab = share_vocab,
     )
+    
+    if weighted_sampling:
+        assert (len(weight_folder_names) == len(weights), "Number of weight folders and weights must be the same")
+        data_path_dict = dict(valid = dict(
+                path_src = f'{data_path}/src-valid.csv',
+                path_tgt = f'{data_path}/tgt-valid.csv',
+            ))
+        
+        for index, (weight, folder_name) in enumerate(zip(weights, weight_folder_names)):
+            data_path_dict[f'train_{index}'] = dict(
+                path_src = f'{data_path}/{folder_name}/src-train.csv',
+                path_tgt = f'{data_path}/{folder_name}/tgt-train.csv',
+                weight = weight,
+            )
+        
+    else:
+        data_path_dict = dict(
+            train = dict(
+                path_src = f'{data_path}/src-train.csv',
+                path_tgt = f'{data_path}/tgt-train.csv',
+            ),
+            valid = dict(
+                path_src = f'{data_path}/src-valid.csv',
+                path_tgt = f'{data_path}/tgt-valid.csv',
+            )
+        )
+        
+    data_params['data'] = data_path_dict
+    return data_params
+
+def write_preprocess_yaml(data_path, 
+                        share_vocab:bool = False, 
+                        weighted_sampling:bool =False, 
+                        weight_folder_names: List = None, 
+                        weights: List = None):
+    preprocess_file_name = f'{data_path}/preprocess.yaml'
+    
+    preprocess_dict = dict(
+        overwrite = True,
+        n_sample = -1,
+        )
+    
+    data_params = return_data_params(data_path, 
+                                     share_vocab=share_vocab, 
+                                     weighted_sampling=weighted_sampling, 
+                                     weight_folder_names=weight_folder_names, 
+                                     weights=weights)
+    preprocess_dict.update(data_params)
+    
+    with open(preprocess_file_name, 'w') as f:
+        yaml.dump(preprocess_dict, f)
+    return
+
+def write_training_yaml(data_path, 
+                        dataset_name:str,  
+                        share_vocab:bool = False, 
+                        weighted_sampling:bool =False, 
+                        weight_folder_names: List = None, 
+                        weights: List = None,
+                        n_gpu:int = 1):
+    
+    if weighted_sampling:
+        training_file_name = f'{data_path}/train_weighted.yaml'
+
+    else:
+        training_file_name = f'{data_path}/train_single.yaml'
+    
+    training_dict = dict(    
+        save_model = f'/rds-d2/user/wjm41/hpc-work/models/smi2wyk/{dataset_name}/model',
+    )
+    
+    training_data_params = return_data_params(data_path, 
+                                            share_vocab=share_vocab, 
+                                            weighted_sampling=weighted_sampling, 
+                                            weight_folder_names=weight_folder_names, 
+                                            weights=weights)
+    
+    training_model_params = return_default_training_params(n_gpu=n_gpu)
+     
+    training_dict.update(training_data_params)
+    training_dict.update(training_model_params)
     
     with open(training_file_name, 'w') as f:
         yaml.dump(training_dict, f)
     return
 
-def write_train_val_test(df, dataset_name, tgt_col: str = 'tgt'):
+def write_tokenized_dataframe(df: pd.DataFrame,
+                              data_path:str,
+                              index: str,
+                              tgt_col:str):
+    Path(data_path).mkdir(parents=True, exist_ok=True)
+    df.smi_tokenized.to_csv(f'{data_path}/src-{index}.csv', index=False, header=False)
+    df.identifier.to_csv(f'{data_path}/id-{index}.csv', index=False, header=False)
+    df[tgt_col].to_csv(f'{data_path}/tgt-{index}.csv', index=False, header=False)
+    return 
+
+def write_train_val_test(df: pd.DataFrame,
+                         dataset_name:str, 
+                         tgt_col: str = 'tgt', 
+                         share_vocab:bool = False, 
+                         weighted_sampling:bool =False, 
+                         weight_folder_names: List = None, 
+                         weights: List = None,
+                         test_split:bool = True,
+                         n_gpu:int = 1):
 
     df = df.drop_duplicates(subset=['smiles'])
-    df_train_and_val = df.sample(frac=0.9, random_state=42)
-    df_test = df.drop(df_train_and_val.index)
+    
+    if test_split:
+        df_train_and_val = df.sample(frac=0.9, random_state=42)
+        df_test = df.drop(df_train_and_val.index)
+    else:
+        df_train_and_val = df.copy()
 
     df_train = df_train_and_val.sample(frac=0.9, random_state=42)
     df_valid = df_train_and_val.drop(df_train.index)
@@ -144,20 +219,24 @@ def write_train_val_test(df, dataset_name, tgt_col: str = 'tgt'):
     
     data_path = f'{data_dir}/{dataset_name}'
     Path(data_path).mkdir(parents=True, exist_ok=True)
-    df_train.smi_tokenized.to_csv(f'{data_path}/src-train.csv', index=False, header=False)
-    df_train.identifier.to_csv(f'{data_path}/id-train.csv', index=False, header=False)
-    df_train[tgt_col].to_csv(f'{data_path}/tgt-train.csv', index=False, header=False)
-
-    df_valid.smi_tokenized.to_csv(f'{data_path}/src-valid.csv', index=False, header=False)
-    df_valid.identifier.to_csv(f'{data_path}/id-valid.csv', index=False, header=False)
-    df_valid[tgt_col].to_csv(f'{data_path}/tgt-valid.csv', index=False, header=False)
-
-    df_test.smi_tokenized.to_csv(f'{data_path}/src-test.csv', index=False, header=False)
-    df_test.identifier.to_csv(f'{data_path}/id-test.csv', index=False, header=False)
-    df_test[tgt_col].to_csv(f'{data_path}/tgt-test.csv', index=False, header=False)
+    write_tokenized_dataframe(df_train, data_path, 'train', tgt_col)
+    write_tokenized_dataframe(df_valid, data_path, 'valid', tgt_col)
     
-    write_default_preprocess_yaml(data_path)
-    write_default_training_yaml(data_path, dataset_name = dataset_name)
+    if test_split:
+        write_tokenized_dataframe(df_test, data_path, 'test', tgt_col)
+    
+    write_preprocess_yaml(data_path,
+                          share_vocab = share_vocab, 
+                        weighted_sampling = weighted_sampling,
+                        weight_folder_names = weight_folder_names, 
+                        weights = weights)
+    write_training_yaml(data_path, 
+                        dataset_name = dataset_name, 
+                        share_vocab=share_vocab, 
+                        weighted_sampling=weighted_sampling, 
+                        weight_folder_names = weight_folder_names, 
+                        weights = weights,
+                        n_gpu = n_gpu)
     return
 
 def submit_training_job(dataset:str):
@@ -185,8 +264,7 @@ def submit_training_job(dataset:str):
 
     print(f"Submitted transformer training jobs on {dataset}")
 
-    !sbatch {file_name}
-    return
+    return file_name
 
 def submit_translation_job(dataset:str, step:int, beam_size:int = 10):
     data_dir = f'/home/wjm41/ml_physics/smi2wyk/data/{dataset}'
@@ -217,8 +295,7 @@ def submit_translation_job(dataset:str, step:int, beam_size:int = 10):
 
     print(f"Submitted translation & scoring jobs on {dataset}")
 
-    !sbatch {file_name}
-    return
+    return file_name
 
 #TODO check if sbatch works as importable python function
 

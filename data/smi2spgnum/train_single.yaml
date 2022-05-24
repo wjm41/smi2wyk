@@ -3,13 +3,6 @@ adam_beta1: 0.9
 adam_beta2: 0.998
 batch_size: 1024
 batch_type: tokens
-data:
-  train:
-    path_src: /home/wjm41/ml_physics/smi2wyk/data/smi2spgnum/src-train.csv
-    path_tgt: /home/wjm41/ml_physics/smi2wyk/data/smi2spgnum/tgt-train.csv
-  valid:
-    path_src: /home/wjm41/ml_physics/smi2wyk/data/smi2spgnum/src-valid.csv
-    path_tgt: /home/wjm41/ml_physics/smi2wyk/data/smi2spgnum/tgt-valid.csv
 decay_method: noam
 decoder_type: transformer
 dropout: 0.1
@@ -19,7 +12,7 @@ global_attention_function: softmax
 gpu_ranks:
 - 0
 heads: 8
-keep_checkpoint: 1
+keep_checkpoint: 2
 label_smoothing: 0.0
 layers: 4
 learning_rate: 2.0
@@ -40,8 +33,14 @@ self_attn_type: scaled-dot
 share_vocab: false
 src_vocab: /home/wjm41/ml_physics/smi2wyk/data/smi2spgnum/vocab.src
 tgt_vocab: /home/wjm41/ml_physics/smi2wyk/data/smi2spgnum/vocab.tgt
+train:
+  path_src: /home/wjm41/ml_physics/smi2wyk/data/smi2spgnum/src-train.csv
+  path_tgt: /home/wjm41/ml_physics/smi2wyk/data/smi2spgnum/tgt-train.csv
 train_steps: 500000
 transformer_ff: 2048
+valid:
+  path_src: /home/wjm41/ml_physics/smi2wyk/data/smi2spgnum/src-valid.csv
+  path_tgt: /home/wjm41/ml_physics/smi2wyk/data/smi2spgnum/tgt-valid.csv
 valid_steps: 5000
 warmup_steps: 8000
 word_vec_size: 256
