@@ -56,6 +56,7 @@ def search_ccdc_for_organic_mols(n_hits: int = 100):
     any_atom_search.settings.no_errors = True
     any_atom_search.settings.only_organic = True
     any_atom_search.settings.not_polymeric = True
+    any_atom_search.settings.no_metals = True
 
     if n_hits != -1:
         any_atom_search.settings.max_hit_structures = n_hits
