@@ -1,13 +1,17 @@
-data:
-  train:
-    path_src: /home/wjm41/ml_physics/smi2wyk/data/smi2spgnum/src-train.csv
-    path_tgt: /home/wjm41/ml_physics/smi2wyk/data/smi2spgnum/tgt-train.csv
-  valid:
-    path_src: /home/wjm41/ml_physics/smi2wyk/data/smi2spgnum/src-valid.csv
-    path_tgt: /home/wjm41/ml_physics/smi2wyk/data/smi2spgnum/tgt-valid.csv
 n_sample: -1
 overwrite: true
 save_data: /home/wjm41/ml_physics/smi2wyk/data/smi2spgnum
 share_vocab: false
 src_vocab: /home/wjm41/ml_physics/smi2wyk/data/smi2spgnum/vocab.src
 tgt_vocab: /home/wjm41/ml_physics/smi2wyk/data/smi2spgnum/vocab.tgt
+train_0:
+  path_src: /home/wjm41/ml_physics/smi2wyk/data/smi2spgnum/common/src-train.csv
+  path_tgt: /home/wjm41/ml_physics/smi2wyk/data/smi2spgnum/common/tgt-train.csv
+  weight: 1
+train_1:
+  path_src: /home/wjm41/ml_physics/smi2wyk/data/smi2spgnum/uncommon/src-train.csv
+  path_tgt: /home/wjm41/ml_physics/smi2wyk/data/smi2spgnum/uncommon/tgt-train.csv
+  weight: 1
+valid:
+  path_src: /home/wjm41/ml_physics/smi2wyk/data/smi2spgnum/src-valid.csv
+  path_tgt: /home/wjm41/ml_physics/smi2wyk/data/smi2spgnum/tgt-valid.csv

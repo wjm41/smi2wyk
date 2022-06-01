@@ -1,0 +1,27 @@
+Loading rhel8/default-amp
+  Loading requirement: dot rhel8/slurm singularity/current rhel8/global
+    cuda/11.4 openmpi/4.1.1/gcc-9.4.0-epagguv
+[2022-05-24 13:10:52,064 INFO] Translating shard 0.
+/rds-d2/user/wjm41/hpc-work/conda/envs/DebiasedMT/lib/python3.8/site-packages/onmt/translate/beam_search.py:282: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the 'trunc' function NOT 'floor'). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode='trunc'), or for actual floor division, use torch.div(a, b, rounding_mode='floor').
+  self._batch_index = self.topk_ids // vocab_size
+[2022-05-24 13:11:09,495 INFO] PRED AVG SCORE: -1.0303, PRED PPL: 2.8020
+[2022-05-24 13:11:09,523 INFO] Translating shard 1.
+[2022-05-24 13:11:25,888 INFO] PRED AVG SCORE: -1.0206, PRED PPL: 2.7749
+[2022-05-24 13:11:25,920 INFO] Translating shard 2.
+[2022-05-24 13:11:42,390 INFO] PRED AVG SCORE: -1.0177, PRED PPL: 2.7669
+[2022-05-24 13:11:42,418 INFO] Translating shard 3.
+[2022-05-24 13:11:47,787 INFO] PRED AVG SCORE: -1.0068, PRED PPL: 2.7368
+Traceback (most recent call last):
+  File "/home/wjm41/ml_physics/smi2wyk/smi2wyk/score_predictions.py", line 143, in <module>
+    fire.Fire(score_predictions)
+  File "/rds-d2/user/wjm41/hpc-work/conda/envs/DebiasedMT/lib/python3.8/site-packages/fire/core.py", line 141, in Fire
+    component_trace = _Fire(component, args, parsed_flag_args, context, name)
+  File "/rds-d2/user/wjm41/hpc-work/conda/envs/DebiasedMT/lib/python3.8/site-packages/fire/core.py", line 466, in _Fire
+    component, remaining_args = _CallAndUpdateTrace(
+  File "/rds-d2/user/wjm41/hpc-work/conda/envs/DebiasedMT/lib/python3.8/site-packages/fire/core.py", line 681, in _CallAndUpdateTrace
+    component = fn(*varargs, **kwargs)
+  File "/home/wjm41/ml_physics/smi2wyk/smi2wyk/score_predictions.py", line 96, in score_predictions
+    targets = read_targets(tgt_path, ignore_last_number)
+  File "/home/wjm41/ml_physics/smi2wyk/smi2wyk/score_predictions.py", line 22, in read_targets
+    with open(targets, 'r') as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'targets.txt'
