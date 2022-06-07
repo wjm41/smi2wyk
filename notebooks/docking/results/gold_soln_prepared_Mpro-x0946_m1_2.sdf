@@ -1,0 +1,148 @@
+unknown|prepared_Mpro-x0946|sdf|1|dock2
+  -GOLD-   5 72214353D 1   1.00000     0.00000
+
+ 17 17  0  0  0  0  0  0  0  0  1 V2000
+  -14.3081   15.6779   72.7018 Br  0  0  0  0  0  0  0  0  0  0  0  0
+  -13.4531   14.2568   71.7416 C   0  0  0  0  0  0  0  0  0  0  0  0
+  -13.5121   12.9609   72.2059 C   0  0  0  0  0  0  0  0  0  0  0  0
+  -12.9001   11.9147   71.5268 C   0  0  0  0  0  0  0  0  0  0  0  0
+  -12.2065   12.1421   70.3536 C   0  0  0  0  0  0  0  0  0  0  0  0
+  -11.4192   10.8534   69.4636 S   0  0  0  0  0  0  0  0  0  0  0  0
+   -9.7337   11.1241   69.4888 N   0  0  0  0  0  0  0  0  0  0  0  0
+  -11.9984   10.8008   68.0988 O   0  0  0  0  0  0  0  0  0  0  0  0
+  -11.6993    9.5493   70.1434 O   0  0  0  0  0  0  0  0  0  0  0  0
+  -12.1514   13.4425   69.8941 C   0  0  0  0  0  0  0  0  0  0  0  0
+  -12.7634   14.4830   70.5749 C   0  0  0  0  0  0  0  0  0  0  0  0
+  -14.0440   12.7497   73.1162 H   0  0  0  0  0  0  0  0  0  0  0  0
+  -12.9426   10.9010   71.8842 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -9.1611   10.3316   69.1665 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -9.3898   11.5859   70.3513 H   0  0  0  0  0  0  0  0  0  0  0  0
+  -11.5976   13.6144   68.9601 H   0  0  0  0  0  0  0  0  0  0  0  0
+  -12.7074   15.4904   70.1975 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0  0  0  0
+  2  3  2  0  0  0  0
+  3  4  1  0  0  0  0
+  4  5  2  0  0  0  0
+  5  6  1  0  0  0  0
+  6  7  1  0  0  0  0
+  6  8  2  0  0  0  0
+  6  9  2  0  0  0  0
+  5 10  1  0  0  0  0
+ 10 11  2  0  0  0  0
+ 11  2  1  0  0  0  0
+  3 12  1  0  0  0  0
+  4 13  1  0  0  0  0
+  7 14  1  0  0  0  0
+  7 15  1  0  0  0  0
+ 10 16  1  0  0  0  0
+ 11 17  1  0  0  0  0
+M  END
+> <Gold.Version>
+2022.1.0
+
+> <Gold.Id.Protein>
+6LU7|6LU7_protein|mol2
+
+> <Gold.PLP.Fitness>
+36.8257
+
+> <Gold.PLP.PLP>
+-31.0155
+
+> <Gold.PLP.part.hbond>
+-2.0000
+
+> <Gold.PLP.part.metal>
+0.0000
+
+> <Gold.PLP.part.buried>
+-4.8534
+
+> <Gold.PLP.part.nonpolar>
+-25.4977
+
+> <Gold.PLP.part.repulsive>
+0.2280
+
+> <Gold.PLP.ligand.clash>
+0.0000
+
+> <Gold.PLP.ligand.torsion>
+1.1724
+
+> <Gold.PLP.Chemscore.Hbond>
+2.0000
+
+> <Gold.PLP.Chemscore.CHOScore>
+0.0000
+
+> <Gold.PLP.Chemscore.Metal>
+0.0000
+
+> <Gold.Chemscore.Hbonds>
+donor molecule, donor type, donor heavy atom, donor atom, acceptor molecule, acceptor atom, score
+      L1  H     7    15       P1  1464  1.00
+      P1  H  1281  4132       L1     8  1.00
+
+> <Gold.PLP.Chemscore.Internal.Correction>
+2.1550
+
+> <Gold.Protein.RotatedTorsions>
+[ 3973 1471 1470 1467 ] final -160.93 input   60.00 | X-H torsion
+[ 3372  414  413  411 ] final -147.60 input   60.00 | X-H torsion
+[ 4268 1114 1113 1110 ] final   90.52 input   59.99 | X-H torsion
+[ 4409  924  923  921 ] final -179.68 input   59.99 | X-H torsion
+[ 4183 1244 1243 1241 ] final  178.00 input   59.99 | X-H torsion
+[ 3800  178  177  174 ] final -148.65 input   60.00 | X-H torsion
+[ 3793  171  170  167 ] final -105.43 input   60.00 | X-H torsion
+[ 3576  185  184  181 ] final  -23.79 input   60.00 | X-H torsion
+[ 3523  346  345  342 ] final  147.23 input   60.01 | X-H torsion
+[ 3515  339  338  335 ] final -106.45 input   60.00 | X-H torsion
+[ 3663  154  153  150 ] final  176.14 input   60.00 | X-H torsion
+[ 4280 1130 1129 1126 ] final    5.83 input   60.00 | X-H torsion
+
+> <Gold.Protein.ActiveResidues>
+ VAL20   THR21   CYS22   GLY23   THR24   THR25   THR26   LEU27   ASN28   PRO39  
+ ARG40   HIS41   VAL42   CYS44   THR45   SER46   ASP48   MET49   LEU50   PRO52  
+ TYR54   TYR118  ASN119  ILE136  GLY138  SER139  PHE140  LEU141  ASN142  GLY143 
+ SER144  CYS145  GLY146  SER147  TYR161  HIS163  HIS164  MET165  GLU166  LEU167 
+ PRO168  THR169  GLY170  VAL171  HIS172  ALA173  PHE181  PHE185  VAL186  ASP187 
+ ARG188  GLN189  THR190  ALA191  GLN192  ALA193 
+
+> <Gold.Protein.RotatedAtoms>
+  -15.4537   17.1022   75.7679 H   0  0  0  0  0  0  0  0  0  0  0  0  # atno 3372 bound_to 414 
+   -2.8183   20.8126   75.6264 H   0  0  0  0  0  0  0  0  0  0  0  0  # atno 3515 bound_to 339 
+   -1.8073   17.7746   72.9938 H   0  0  0  0  0  0  0  0  0  0  0  0  # atno 3523 bound_to 346 
+   -8.7087   25.3957   63.7557 H   0  0  0  0  0  0  0  0  0  0  0  0  # atno 3576 bound_to 185 
+   -6.8880   29.6333   65.0886 H   0  0  0  0  0  0  0  0  0  0  0  0  # atno 3663 bound_to 154 
+   -2.1426   24.7830   72.7545 H   0  0  0  0  0  0  0  0  0  0  0  0  # atno 3793 bound_to 171 
+   -7.5917   22.5745   72.1092 H   0  0  0  0  0  0  0  0  0  0  0  0  # atno 3800 bound_to 178 
+  -15.5387    8.5385   78.5326 H   0  0  0  0  0  0  0  0  0  0  0  0  # atno 3973 bound_to 1471
+  -19.9130   13.5356   63.1021 H   0  0  0  0  0  0  0  0  0  0  0  0  # atno 4183 bound_to 1244
+  -14.2105   16.0011   61.3686 H   0  0  0  0  0  0  0  0  0  0  0  0  # atno 4268 bound_to 1114
+  -16.0290   20.3634   59.1588 H   0  0  0  0  0  0  0  0  0  0  0  0  # atno 4280 bound_to 1130
+  -10.8510   15.0473   57.9870 H   0  0  0  0  0  0  0  0  0  0  0  0  # atno 4409 bound_to 924 
+  -15.5279    7.3078   77.4681 LP  0  0  0  0  0  0  0  0  0  0  0  0  # atno 4696 bound_to 1471
+  -14.9662    8.7766   77.0281 LP  0  0  0  0  0  0  0  0  0  0  0  0  # atno 4697 bound_to 1471
+  -13.9591   17.5390   76.2405 LP  0  0  0  0  0  0  0  0  0  0  0  0  # atno 4731 bound_to 414 
+  -14.6779   18.3012   74.9879 LP  0  0  0  0  0  0  0  0  0  0  0  0  # atno 4732 bound_to 414 
+  -12.7719   16.2253   62.0951 LP  0  0  0  0  0  0  0  0  0  0  0  0  # atno 4733 bound_to 1114
+  -12.9256   15.1160   60.9066 LP  0  0  0  0  0  0  0  0  0  0  0  0  # atno 4734 bound_to 1114
+  -10.8256   15.0077   56.3605 LP  0  0  0  0  0  0  0  0  0  0  0  0  # atno 4763 bound_to 924 
+  -12.1913   15.4326   57.1485 LP  0  0  0  0  0  0  0  0  0  0  0  0  # atno 4764 bound_to 924 
+  -20.9492   12.3724   63.5725 LP  0  0  0  0  0  0  0  0  0  0  0  0  # atno 4771 bound_to 1244
+  -20.5082   13.5481   64.6165 LP  0  0  0  0  0  0  0  0  0  0  0  0  # atno 4772 bound_to 1244
+   -6.8428   24.0019   72.3323 LP  0  0  0  0  0  0  0  0  0  0  0  0  # atno 4775 bound_to 178 
+   -6.1760   22.8695   71.3630 LP  0  0  0  0  0  0  0  0  0  0  0  0  # atno 4776 bound_to 178 
+   -2.2588   23.4059   71.8955 LP  0  0  0  0  0  0  0  0  0  0  0  0  # atno 4779 bound_to 171 
+   -3.5638   24.3705   72.0778 LP  0  0  0  0  0  0  0  0  0  0  0  0  # atno 4780 bound_to 171 
+   -7.2612   25.5929   63.0389 LP  0  0  0  0  0  0  0  0  0  0  0  0  # atno 4783 bound_to 185 
+   -7.9762   26.8480   63.8007 LP  0  0  0  0  0  0  0  0  0  0  0  0  # atno 4784 bound_to 185 
+   -3.3471   18.2969   73.0579 LP  0  0  0  0  0  0  0  0  0  0  0  0  # atno 4785 bound_to 346 
+   -3.0160   16.7843   72.5393 LP  0  0  0  0  0  0  0  0  0  0  0  0  # atno 4786 bound_to 346 
+   -2.9881   22.2985   74.9853 LP  0  0  0  0  0  0  0  0  0  0  0  0  # atno 4787 bound_to 339 
+   -3.6643   21.0067   74.2500 LP  0  0  0  0  0  0  0  0  0  0  0  0  # atno 4788 bound_to 339 
+   -8.5053   29.4544   65.1067 LP  0  0  0  0  0  0  0  0  0  0  0  0  # atno 4797 bound_to 154 
+   -7.5382   28.2071   65.5257 LP  0  0  0  0  0  0  0  0  0  0  0  0  # atno 4798 bound_to 154 
+
+$$$$

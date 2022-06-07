@@ -1,27 +1,447 @@
 # protein initialization seed
-seed 922398
-seed 787608
+seed 791234
+seed 440742
 # seeds for ligand 1
-seed 853170
-seed 881263
-seed 904571
-seed 925462
+seed 490318
+seed 514891
+seed 535749
+seed 556943
 # seeds for ligand 2
-seed 984346
-seed 8344
-seed 32656
-seed 45598
+seed 612112
+seed 630548
+seed 649348
+seed 673924
 # seeds for ligand 3
-seed 105969
-seed 131071
-seed 155260
-seed 171734
+seed 724597
+seed 745462
+seed 766040
+seed 783347
 # seeds for ligand 4
-seed 230871
-seed 255283
-seed 278757
-seed 291600
+seed 832288
+seed 850898
+seed 870303
+seed 886611
 # seeds for ligand 5
-seed 360767
-seed 388471
-seed 411937
+seed 928718
+seed 946571
+seed 965302
+seed 996091
+# seeds for ligand 1
+seed 48593
+seed 69266
+seed 89536
+seed 106042
+# seeds for ligand 2
+seed 165714
+seed 186384
+seed 206821
+seed 229757
+# seeds for ligand 3
+seed 281648
+seed 300488
+seed 317950
+seed 332166
+# seeds for ligand 4
+seed 377699
+seed 395000
+seed 412511
+seed 423750
+# seeds for ligand 5
+seed 477061
+seed 496856
+seed 515385
+seed 537107
+# seeds for ligand 1
+seed 585911
+seed 601203
+seed 628784
+# seeds for ligand 2
+seed 672209
+seed 691115
+seed 712794
+# seeds for ligand 3
+seed 769355
+seed 787272
+seed 820096
+# seeds for ligand 4
+seed 867788
+seed 886130
+seed 914115
+# seeds for ligand 5
+seed 962151
+seed 980586
+seed 12141
+# seeds for ligand 1
+seed 67506
+seed 84038
+seed 98069
+# seeds for ligand 2
+seed 139455
+seed 154300
+seed 163353
+# seeds for ligand 3
+seed 203601
+seed 218532
+seed 233486
+# seeds for ligand 4
+seed 274767
+seed 290004
+seed 302945
+# seeds for ligand 5
+seed 350564
+seed 369977
+seed 386952
+# seeds for ligand 1
+seed 436072
+seed 452118
+seed 467965
+seed 479759
+# seeds for ligand 2
+seed 526516
+seed 541907
+seed 557230
+seed 569548
+# seeds for ligand 3
+seed 610022
+seed 626928
+seed 643388
+seed 659148
+# seeds for ligand 4
+seed 716190
+seed 735441
+seed 755965
+seed 771852
+# seeds for ligand 5
+seed 823959
+seed 845751
+seed 862399
+seed 882073
+# seeds for ligand 1
+seed 925767
+seed 939725
+seed 960232
+# seeds for ligand 2
+seed 14795
+seed 36381
+seed 64040
+# seeds for ligand 3
+seed 116619
+seed 132570
+seed 151059
+# seeds for ligand 4
+seed 190965
+seed 205675
+seed 227400
+# seeds for ligand 5
+seed 274199
+seed 288201
+seed 314413
+# seeds for ligand 1
+seed 363758
+seed 379696
+seed 395566
+seed 409448
+# seeds for ligand 2
+seed 459322
+seed 474750
+seed 491043
+seed 509688
+# seeds for ligand 3
+seed 557525
+seed 573698
+seed 589926
+seed 609097
+# seeds for ligand 4
+seed 659404
+seed 677363
+seed 693477
+seed 704868
+# seeds for ligand 5
+seed 752459
+seed 768302
+seed 784260
+seed 807043
+# seeds for ligand 1
+seed 848903
+seed 863534
+seed 875234
+# seeds for ligand 2
+seed 913727
+seed 929365
+seed 942147
+# seeds for ligand 3
+seed 985359
+seed 6051
+seed 20381
+# seeds for ligand 4
+seed 62629
+seed 86255
+seed 95719
+# seeds for ligand 5
+seed 135636
+seed 150727
+seed 167701
+# seeds for ligand 1
+seed 211346
+seed 237484
+seed 249596
+# seeds for ligand 2
+seed 291374
+seed 307952
+seed 320718
+# seeds for ligand 3
+seed 363346
+seed 379813
+seed 393712
+# seeds for ligand 4
+seed 445480
+seed 461639
+seed 475658
+# seeds for ligand 5
+seed 526706
+seed 544422
+seed 565061
+# seeds for ligand 1
+seed 612734
+seed 629412
+seed 651778
+seed 666623
+# seeds for ligand 2
+seed 709805
+seed 727163
+seed 746791
+seed 769944
+# seeds for ligand 3
+seed 813850
+seed 831340
+seed 848902
+seed 866576
+# seeds for ligand 4
+seed 909344
+seed 926683
+seed 943129
+seed 955698
+# seeds for ligand 5
+seed 1810
+seed 20652
+seed 44082
+seed 66783
+# seeds for ligand 1
+seed 124813
+seed 137299
+seed 161072
+# seeds for ligand 2
+seed 219036
+seed 231199
+seed 241884
+# seeds for ligand 3
+seed 296926
+seed 309343
+seed 322543
+# seeds for ligand 4
+seed 384481
+seed 397817
+seed 407263
+# seeds for ligand 5
+seed 465172
+seed 477304
+seed 493905
+# seeds for ligand 1
+seed 535572
+seed 553722
+seed 566645
+# seeds for ligand 2
+seed 606603
+seed 622134
+seed 633870
+# seeds for ligand 3
+seed 674493
+seed 691774
+seed 703795
+# seeds for ligand 4
+seed 752224
+seed 773954
+seed 785751
+# seeds for ligand 5
+seed 825847
+seed 842329
+seed 858198
+# seeds for ligand 1
+seed 906525
+seed 914673
+# seeds for ligand 2
+seed 963168
+seed 972316
+# seeds for ligand 3
+seed 21608
+seed 30117
+# seeds for ligand 4
+seed 83953
+seed 93022
+# seeds for ligand 5
+seed 144956
+seed 163378
+# seeds for ligand 1
+seed 208984
+seed 227407
+seed 253375
+# seeds for ligand 2
+seed 299872
+seed 318150
+seed 341910
+# seeds for ligand 3
+seed 390235
+seed 408300
+seed 435122
+# seeds for ligand 4
+seed 481241
+seed 498804
+seed 525953
+# seeds for ligand 5
+seed 575085
+seed 596290
+seed 626670
+# seeds for ligand 1
+seed 671561
+seed 684567
+seed 697415
+# seeds for ligand 2
+seed 740997
+seed 755025
+seed 769482
+# seeds for ligand 3
+seed 812432
+seed 825874
+seed 834877
+# seeds for ligand 4
+seed 883555
+seed 898581
+seed 910824
+# seeds for ligand 5
+seed 954724
+seed 974008
+seed 991998
+# seeds for ligand 1
+seed 52471
+seed 77624
+seed 99283
+seed 118087
+seed 137942
+seed 153040
+# seeds for ligand 2
+seed 201157
+seed 220293
+seed 239851
+seed 258062
+seed 275997
+seed 291509
+# seeds for ligand 3
+seed 351153
+seed 374423
+seed 396557
+seed 420714
+seed 441729
+seed 463245
+# seeds for ligand 4
+seed 511294
+seed 530082
+seed 549412
+seed 567998
+seed 584705
+seed 604456
+# seeds for ligand 5
+seed 657179
+seed 675025
+seed 693335
+seed 711974
+seed 729567
+seed 753750
+# seeds for ligand 1
+seed 797146
+seed 813370
+seed 828051
+# seeds for ligand 2
+seed 874148
+seed 889025
+seed 899940
+# seeds for ligand 3
+seed 943482
+seed 961231
+seed 974020
+# seeds for ligand 4
+seed 15276
+seed 30414
+seed 42632
+# seeds for ligand 5
+seed 83534
+seed 97560
+seed 113942
+# seeds for ligand 1
+seed 162837
+seed 182457
+seed 207052
+# seeds for ligand 2
+seed 251017
+seed 273014
+seed 296709
+# seeds for ligand 3
+seed 337578
+seed 354318
+seed 377355
+# seeds for ligand 4
+seed 416874
+seed 433653
+seed 456537
+# seeds for ligand 5
+seed 509650
+seed 536727
+seed 575317
+# seeds for ligand 1
+seed 629459
+seed 647840
+seed 670164
+seed 683184
+# seeds for ligand 2
+seed 740145
+seed 763632
+seed 785436
+seed 797983
+# seeds for ligand 3
+seed 855239
+seed 875435
+seed 896261
+seed 913963
+# seeds for ligand 4
+seed 960790
+seed 979827
+seed 998206
+seed 18715
+# seeds for ligand 5
+seed 68483
+seed 86726
+seed 104837
+seed 125532
+# seeds for ligand 1
+seed 169271
+seed 185535
+seed 201743
+seed 216973
+# seeds for ligand 2
+seed 260040
+seed 276632
+seed 292380
+seed 309324
+# seeds for ligand 3
+seed 350970
+seed 366682
+seed 382077
+seed 396508
+# seeds for ligand 4
+seed 439722
+seed 455037
+seed 471320
+seed 484588
+# seeds for ligand 5
+seed 528022
+seed 543772
+seed 560792
