@@ -4,7 +4,8 @@ runs/
 slurm/slurm_logs/
 test/test_runs/
 *.npy
-
+notebooks/docking/results/DSI/
+notebooks/docking/prepared_ligands/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
